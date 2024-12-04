@@ -1,0 +1,13 @@
+pomme 1$
+orange 2$
+peche 1.50$
+melon 5$
+spaghettis 1.50$
+macaronis 1.50$
+sauce 2$
+oignon 1$
+ail 0.50$
+persil 0.50$
+vin 22$
+fromage 5$
+saumon 17$

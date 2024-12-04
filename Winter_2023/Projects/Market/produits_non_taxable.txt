@@ -1,0 +1,7 @@
+pomme
+orange
+peche
+melon
+oignon
+ail
+persil

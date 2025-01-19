@@ -2,29 +2,29 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Modifier le chemin pour votre emplacement des fichiers combinés du Dataset
+# Update the path to your location of the combined Dataset files
 data_file = r"C:\Users\sejbo\.kaggle\420-318-ah-a24\full_dataset.csv"
-sample_file = r"C:\Users\sejbo\.kaggle\420-318-ah-a24\sample_dataset.csv"   # 200 000 premières données
+sample_file = r"C:\Users\sejbo\.kaggle\420-318-ah-a24\sample_dataset.csv"   # First 200,000 records
 
-# Importer (changer data_file -> sample_file pour visualiser l'échantillon seulement)
+# Import data (change data_file -> sample_file to visualize only the sample)
 data = pd.read_csv(data_file)
 
-# Convertir en format Timestamp
+# Convert to Timestamp format
 data['Timestamp [ms]'] = pd.to_datetime(data['Timestamp [ms]'])
 
-# Trier et interpoler les données en ordre chronologique
+# Sort and interpolate the data in chronological order
 data = data.sort_values(by='Timestamp [ms]').interpolate(method='linear')
 
-# Filtrer les données aberrantes du CPU usage [%]
+# Filter outliers in CPU usage [%]
 # data = data[(data['CPU usage [%]'] >= 0) & (data['CPU usage [%]'] <= 100)]
 
-# Filtrer les données aberrantes du Memory usage [KB] pour ne conserver que les pics importants
+# Filter outliers in Memory usage [KB] to keep only significant peaks
 # data = data[(data['Memory usage [KB]'] >= 12500000) & (data['Memory usage [KB]'] <= 22500000)]
 
-# Création du template des graphiques
+# Create the graph template
 fig, axs = plt.subplots(2, 2, figsize=(15, 8))
 
-# 1. Tracer le CPU usage et le memory usage
+# 1. Plot CPU usage and memory usage
 ax1 = axs[0, 0]
 ax1.plot(data['Timestamp [ms]'], data['CPU usage [%]'], color='tab:blue', label='CPU usage [%]', linewidth=0.1)
 ax1.set_xlabel('Time')
@@ -38,28 +38,28 @@ ax2.tick_params(axis='y', labelcolor='tab:red')
 
 ax1.set_title('CPU usage [%] & Memory usage [KB]')
 
-# 2. Boxplot du CPU usage [%]
+# 2. Boxplot of CPU usage [%]
 ax2_1 = axs[0, 1]
 sns.boxplot(data=data, x='CPU usage [%]', color='tab:blue', ax=ax2_1)
 ax2_1.set_title('CPU usage [%] Boxplot')
 ax2_1.set_xlabel('CPU usage [%]')
 
-# 3. Histogramme du CPU usage [%]
+# 3. Histogram of CPU usage [%]
 ax3_1 = axs[1, 0]
 sns.histplot(data['CPU usage [%]'], bins=200, color='tab:blue', kde=True, ax=ax3_1)
 ax3_1.set_xlabel('CPU usage [%]')
 ax3_1.set_ylabel('Frequency')
 ax3_1.set_title('CPU usage [%]')
 
-# 4. Heatmap des corrélations
+# 4. Heatmap of correlations
 ax4_1 = axs[1, 1]
 correlation_matrix = data.corr()
 sns.heatmap(correlation_matrix, annot=True, fmt='.2f', cmap='coolwarm', cbar=True, ax=ax4_1)
 ax4_1.set_title('Dataset Heatmap')
 
-# Afficher
+# Display the graphs
 plt.tight_layout()
 plt.show()
 
-# Afficher les informations du Dataset
+# Display information about the Dataset
 # print(data.info())

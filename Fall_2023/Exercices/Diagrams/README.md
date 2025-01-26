@@ -1,13 +1,13 @@
-## Introduction à la Modification du Système de Gestion des Livres
+## Introduction to the Modification of the Book Management System
 
-Notre proposition de modification du système de gestion des livres simplifie le processus d'ajout en introduisant une condition clé. Désormais, lors de l'entrée d'un code ISBN, au lieu de générer une erreur immédiate, le système **demande à l'utilisateur de fournir un titre associé**. Cette modification stratégique permet au système de basculer vers une recherche basée sur le titre plutôt que sur l'ISBN, évitant ainsi les obstacles posés par l'absence de ce dernier, en particulier pour les livres plus anciens. Nous croyons que cette solution offre une approche plus souple et intuitive tout en préservant l'intégrité de notre base de données. Avant d'implémenter ce changement, nous sollicitons vos avis pour garantir son efficacité et son acceptation par l'équipe.
+Our proposed modification to the book management system simplifies the addition process by introducing a key condition. Now, when entering an ISBN code, instead of immediately generating an error, the system **prompts the user to provide an associated title**. This strategic modification allows the system to switch to title-based searches rather than relying solely on the ISBN, thus avoiding obstacles caused by the absence of the latter, particularly for older books. We believe this solution offers a more flexible and intuitive approach while preserving the integrity of our database. Before implementing this change, we seek your feedback to ensure its effectiveness and acceptance by the team.
 
-### Diagramme séquence: actuel
+### Sequence Diagram: Current
 
 ```mermaid
 sequenceDiagram
-actor Bibliothécaire
-    Bibliothécaire->>+Frontend: Enter code
+actor Librarian
+    Librarian->>+Frontend: Enter code
     Frontend->>+Backend: Verify code
 
     alt
@@ -18,32 +18,32 @@ actor Bibliothécaire
         alt
         MongoDB-->>Backend: No similarities
         Backend-->>Frontend: Book doesn't exist
-        Frontend->>Bibliothécaire: Request book info
+        Frontend->>Librarian: Request book info
 
         else
         MongoDB-->>-Backend: Similarities
         Backend-->>Frontend: Book exists
-        Frontend->>Bibliothécaire: Error "Livre déjà existant"
+        Frontend->>Librarian: Error "Book already exists"
         end
     else
         Backend-->>Frontend: Invalid code
-        Frontend->>Bibliothécaire: Error "Code invalide"
+        Frontend->>Librarian: Error "Invalid code"
     end
 
-    Bibliothécaire-->>Frontend: Enter book info
+    Librarian-->>Frontend: Enter book info
     Frontend->>Backend: Send "add book" request
     Backend->>+MongoDB: Add book to DataBase
-    MongoDB-->>-Backend: Request succesful
+    MongoDB-->>-Backend: Request successful
     Backend-->>-Frontend: DataBase updated
-    Frontend->>-Bibliothécaire: "Livre ajouté avec succès"
+    Frontend->>-Librarian: "Book successfully added"
 ```
 
-### Diagramme séquence: suggéré
+### Sequence Diagram: Proposed
 
 ```mermaid
 sequenceDiagram
-actor Bibliothécaire
-    Bibliothécaire->>+Frontend: Enter code
+actor Librarian
+    Librarian->>+Frontend: Enter code
     Frontend->>+Backend: Verify code
 
     alt
@@ -54,37 +54,37 @@ actor Bibliothécaire
         alt
         MongoDB-->>Backend: No similarities
         Backend-->>Frontend: Book doesn't exist
-        Frontend->>Bibliothécaire: Request book info
+        Frontend->>Librarian: Request book info
 
         else
         MongoDB-->>-Backend: Similarities
         Backend-->>Frontend: Book exists
-        Frontend->>Bibliothécaire: Error "Livre déjà existant"
+        Frontend->>Librarian: Error "Book already exists"
         end
     else
         Backend-->>Frontend: Invalid code
-        Frontend->>Bibliothécaire: Request book name
+        Frontend->>Librarian: Request book name
     end
 
-    Bibliothécaire-->>Frontend: Enter book name
+    Librarian-->>Frontend: Enter book name
     Frontend->>Backend: Verify if exists
     Backend->>+MongoDB: Verify similarities
 
         alt
         MongoDB-->>Backend: No similarities
         Backend-->>Frontend: Book doesn't exist
-        Frontend->>Bibliothécaire: Request book info
+        Frontend->>Librarian: Request book info
 
         else
         MongoDB-->>-Backend: Similarities
         Backend-->>Frontend: Book exists
-        Frontend->>Bibliothécaire: Error "Livre déjà existant"
+        Frontend->>Librarian: Error "Book already exists"
         end
 
-    Bibliothécaire-->>Frontend: Enter book info
+    Librarian-->>Frontend: Enter book info
     Frontend->>Backend: Send book infos
     Backend->>+MongoDB: Add book to DataBase
-    MongoDB-->>-Backend: Request succesful
+    MongoDB-->>-Backend: Request successful
     Backend-->>-Frontend: DataBase updated
-    Frontend->>-Bibliothécaire: "Livre ajouté avec succès"
+    Frontend->>-Librarian: "Book successfully added"
 ```

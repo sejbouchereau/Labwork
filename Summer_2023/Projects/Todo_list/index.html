@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/06745a3a6c.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <title>My Todo List</title>
+</head>
+
+<body>
+    <div class="appContainer">
+        <div id="weather" class="weather-locationContainer">
+            <p id="date" class="date"></p>
+            <div class="location">
+                <p id="city" class="city">---</p>
+                <p id="editCityButton" class="editCity">Change</p>
+                <div id="cityUpdateContainer" class="inputContainer hidden">
+                    <input id="cityInput" class="addInput" type="text" placeholder="Enter your city here" />
+                    <button id="updateCityButton" class="updateCityButton">Update</button>
+                </div>
+            </div>
+            <div class="weather">
+                <p id="currTemp">--- <sup>o</sup>C</p>
+                <p id="condition">---</p>
+                <div class="high-low-temp">
+                    <p id="highTemp">H: --- <sup>o</sup>C</p>
+                    <p>|</p>
+                    <p id="lowTemp">L: --- <sup>o</sup>C</p>
+                </div>
+            </div>
+        </div>
+        <div class="appInterface">
+            <h1 class="title">To-do list</h1>
+            <div id="todosContainer" class="todosContainer">
+            </div>
+            <div class="filtersContainer">
+                <button class="selected" id="allFilter">all</button>
+                <button class="unselected" id="completedFilter">completed</button>
+                <button class="unselected" id="uncompletedFilter">uncompleted</button>
+            </div>
+            <div class="inputContainer">
+                <input id="addInput" class="addInput" type="text" placeholder="Enter to do here" />
+                <button id="addTodoButton" class="addTodoButton">Add</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,268 +1,257 @@
 """
 1.
-Créez une classe Date qui représente une date (jour, mois, année).
-Ajoutez des méthodes pour afficher la date au format jour/mois/année et pour déterminer si l'année est bissextile.
-afficher_date -> jour/mois/annee
-is_annee_bissextile
-Testez votre classe en créant une instance de Date et en affichant la date et si l'année est bissextile.
+Create a Date class that represents a date (day, month, year).
+Add methods to display the date in the format day/month/year and to determine if the year is a leap year.
+display_date -> day/month/year
+is_leap_year
+Test your class by creating an instance of Date and displaying the date and whether the year is a leap year.
 """
 from math import pi
 from typing import List
 
 """
-- Si le jour n'est pas un chiffre entre 1 et 31, levez une ValueError
+- If the day is not a number between 1 and 31, raise a ValueError
 """
 
 
 class Date:
-    def __init__(self, jour, mois, annee):
-        self.jour = jour
-        if 1 <= int(self.jour) <= 31:
-            self.mois = mois
-            self.annee = annee
+    def __init__(self, day, month, year):
+        self.day = day
+        if 1 <= int(self.day) <= 31:
+            self.month = month
+            self.year = year
         else:
-            raise ValueError('Le jour doit être compris entre 1 et 31')
+            raise ValueError('The day must be between 1 and 31')
 
-    def afficher_date(self):
-        print(f"{self.jour}/{self.mois}/{self.annee}")
+    def display_date(self):
+        print(f"{self.day}/{self.month}/{self.year}")
 
-    def is_annee_bissextile(self):
-        if self.annee % 4 == 0:
+    def is_leap_year(self):
+        if self.year % 4 == 0:
             return True
         else:
             return False
 
 
-# exemple = Date(6, "Avril", 2023)
-# exemple.afficher_date()
-# exemple.is_annee_bissextile()
+# example = Date(6, "April", 2023)
+# example.display_date()
+# example.is_leap_year()
 
 
 """
-Écrire une fonction qui demande à l'utilisateur d'entrer un jour, un mois, une année et qui retourne un objet Date. 
-Le nom de la fonction est ask_for_date()
+Write a function that asks the user to enter a day, a month, a year, and returns a Date object. 
+The function name is ask_for_date()
 
--- Cette fonction peut retourner une erreur à trois endroits.
-    -- jour = int(input)
-    -- annee = int(input)
-    -- return Date(jour, mois, annee)
+-- This function can return an error in three places:
+    -- day = int(input)
+    -- year = int(input)
+    -- return Date(day, month, year)
 --
-    Si une erreur est levée:
-    Je veux afficher à l'écran: Vous avez entré une valeur invalide et aussi l'erreur retournée. 
+    If an error is raised:
+    I want to display on the screen: You have entered an invalid value along with the returned error. 
 """
 
 
 def ask_for_date():
     try:
-        jour = int(input('Entrez un jour: '))
-        mois = input('Entrez un mois: ')
-        annee = int(input('Entrez une année: '))
+        day = int(input('Enter a day: '))
+        month = input('Enter a month: ')
+        year = int(input('Enter a year: '))
 
-        return Date(jour, mois, annee)
+        return Date(day, month, year)
     except Exception as e:
-        print(f"Vous avez entré une valeur invalide. Voici l'erreur retournée: {e}")
+        print(f"You have entered an invalid value. Here is the returned error: {e}")
 
 
 date = ask_for_date()
 
-if date.is_annee_bissextile():
-    print("L'année entrée est bissextile.")
+if date.is_leap_year():
+    print("The entered year is a leap year.")
 
-hier = Date(5, 'avril', 2023)
-demain = Date(7, 'avril', 2023)
-hier.afficher_date()
-date.afficher_date()
-demain.afficher_date()
-
-"""
-Créez une classe Livre qui représente un livre avec un titre, un auteur et un prix.
-Ajoutez une méthode pour retourner le titre du livre
-Ajoutez une méthode pour retourner l'auteur du livre et 
-une méthode pour vérifier si le livre est en promotion 
-(c'est-à-dire si le prix est inférieur à un prix donné en paramètre).
-"""
+yesterday = Date(5, 'April', 2023)
+tomorrow = Date(7, 'April', 2023)
+yesterday.display_date()
+date.display_date()
+tomorrow.display_date()
 
 """
-Dans la méthode is_livre_en_promotion:
-    -- Si le prix donné en paramètre est supérieur à 35$ 
-    -- Levez une ValueError qui dit: Un prix de promotion ne peut être supérieur à 35$
+Create a Book class that represents a book with a title, an author, and a price.
+Add a method to return the book's title.
+Add a method to return the book's author and 
+a method to check if the book is on sale 
+(that is, if the price is lower than a given price parameter).
+"""
+
+"""
+In the is_book_on_sale method:
+    -- If the given price parameter is greater than $35 
+    -- Raise a ValueError saying: A sale price cannot be higher than $35
 """
 
 
-class Livre:
-    def __init__(self, titre, auteur, prix):
-        self.titre = titre
-        self.auteur = auteur
-        self.prix = prix
+class Book:
+    def __init__(self, title, author, price):
+        self.title = title
+        self.author = author
+        self.price = price
 
-    def afficher_titre(self):
-        print(self.titre)
+    def display_title(self):
+        print(self.title)
 
-    def get_titre(self):
-        return self.titre
+    def get_title(self):
+        return self.title
 
-    def get_auteur(self):
-        return self.auteur
+    def get_author(self):
+        return self.author
 
-    def is_livre_en_promotion(self, prix):
-        if prix > self.prix:
-            raise ValueError("Un prix de promotion ne peut être supérieur au prix de l'article")
-        return self.prix > prix
+    def is_book_on_sale(self, price):
+        if price > self.price:
+            raise ValueError("A sale price cannot be higher than the item's price")
+        return self.price > price
 
 
-book = Livre("Moby Dick", "Jules Verne", 60)
+book = Book("Moby Dick", "Jules Verne", 60)
 
 """
-Je veux demander à l'utilisateur d'entrer un prix de promotion
-Et je veux afficher Wouhouu! si le livre le tour du monde en 80 jours est en promotion
+I want to ask the user to enter a sale price
+And I want to display Woohoo! if the book *Around the World in 80 Days* is on sale.
 
--- Si ce programme retourne une ValueError, affichez à l'écran: Vous avez entrer une valeur invalide, suivie de l'erreur retournée
+-- If this program returns a ValueError, display on the screen: You have entered an invalid value, followed by the returned error.
 """
 
 try:
-    prix_promo = int(input("Entrez le prix de promotion: "))
-    if book.is_livre_en_promotion(prix_promo):
-        print("Wouhouu vous sauvez de précieux billets!")
+    sale_price = int(input("Enter the sale price: "))
+    if book.is_book_on_sale(sale_price):
+        print("Woohoo! You saved some precious money!")
     else:
-        print("Le livre n'est pas en promotion")
+        print("The book is not on sale")
 except ValueError as e:
-    print(f"Vous avez entrer une valeur invalide: {e}")
+    print(f"You have entered an invalid value: {e}")
 
-print(f"Merci de votre achat: {book.get_titre()} par {book.get_auteur()}.")
-
-"""
-Créez une classe Etudiant qui représente un étudiant
-avec un nom: str, un prénom:str , une date de naissance: Date et une liste de notes: List[int]. 
-Ajoutez des méthodes pour 
-calculer la moyenne des notes de l'étudiant et
-pour afficher son nom et 
-pour afficher sa moyenne.
-"""
-
-
-class Etudiant:
-    def __init__(self, prenom: str, nom: str, date_de_naissance: Date, liste_notes: List[int]):
-        self.prenom = prenom
-        self.nom = nom
-        self.date_de_naissance = date_de_naissance
-        self.liste_notes = liste_notes
-
-    def calculer_moyenne(self):
-        return sum(self.liste_notes) / len(self.liste_notes)
-
-    def afficher_nom(self):
-        print(f"{self.prenom} {self.nom}")
-
-    def afficher_moyenne(self):
-        print(self.calculer_moyenne())
-
+print(f"Thank you for your purchase: {book.get_title()} by {book.get_author()}.")
 
 """
-Je veux créer un objet avec comme prénom Jonathan comme nom Joseph comme date de naissance le 12 aout 1980 et comme notes 
-[80, 79, 90, 58, 72]
-"""
-
-jonathan = Etudiant('Jonathan', 'Joseph', Date(10, "Juillet", 2000), [80, 79, 90, 58, 72])
-jonathan.afficher_moyenne(), jonathan.date_de_naissance.afficher_date()
-
-"""
-Créez une classe Cercle qui a un attribut : le rayon.
-Ajoutez une méthode pour calculer et retourner la surface pi*r^2 et une autre méthode pour calculer la circonférence 2*pi*r.
+Create a Student class that represents a student
+with a first name: str, a last name: str, a birth date: Date, and a list of grades: List[int]. 
+Add methods to 
+calculate the student's grade average,
+display their name, and
+display their average.
 """
 
 
-class Cercle:
-    def __init__(self, rayon):
-        self.rayon = rayon
+class Student:
+    def __init__(self, first_name: str, last_name: str, birth_date: Date, grades: List[int]):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.birth_date = birth_date
+        self.grades = grades
 
-    def calculer_surface(self):
-        return pi * (self.rayon ** 2)
+    def calculate_average(self):
+        return sum(self.grades) / len(self.grades)
 
-    def calculer_circonference(self):
-        return 2 * pi * self.rayon
+    def display_name(self):
+        print(f"{self.first_name} {self.last_name}")
 
+    def display_average(self):
+        print(self.calculate_average())
 
-cercle_1 = Cercle(10)
-cercle_2 = Cercle(34)
-
-print(int(cercle_1.calculer_circonference()))
-print(int(cercle_2.calculer_circonference()))
 
 """
-Créez une classe JeuDeCartes qui a deux attributs : 
-la liste des cartes et 
-une carte est représentée par un objet de la classe Carte
-qui a 2 attributs: 
--- La valeur (Chiffre entre 1 et 13)
--- La couleur (Pique, Trèfle, Coeur, Carreau)
--- Une méthode afficher_carte: 
-    Ex. "4 de Carreau"
-la liste de joueurs. 
-Liste de string: 
+I want to create an object with first name Jonathan, last name Joseph, birth date August 12, 1980, and grades [80, 79, 90, 58, 72]
+"""
 
-Ajoutez des méthodes pour distribuer les cartes et afficher les cartes des joueurs.
+jonathan = Student('Jonathan', 'Joseph', Date(10, "July", 2000), [80, 79, 90, 58, 72])
+jonathan.display_average(), jonathan.birth_date.display_date()
 
+"""
+Create a Circle class that has one attribute: the radius.
+Add a method to calculate and return the area (pi*r^2) and another method to calculate the circumference (2*pi*r).
 """
 
 
-class Carte:
-    def __init__(self, valeur, couleur):
-        if valeur < 1 or valeur > 13:
-            raise ValueError("La carte doit avoir une valeur comprise entre 1 et 13")
-        self.valeur = valeur
-        self.couleur = couleur
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
 
-    def afficher_carte(self):
-        print(f"{self.valeur} de {self.couleur}")
+    def calculate_area(self):
+        return pi * (self.radius ** 2)
+
+    def calculate_circumference(self):
+        return 2 * pi * self.radius
 
 
-class JeuDeCartes:
+circle_1 = Circle(10)
+circle_2 = Circle(34)
+
+print(int(circle_1.calculate_circumference()))
+print(int(circle_2.calculate_circumference()))
+
+"""
+Create a CardGame class that has two attributes: 
+the list of cards and 
+a card is represented by an object of the Card class
+which has 2 attributes: 
+-- The value (number between 1 and 13)
+-- The suit (Spade, Club, Heart, Diamond)
+-- A method display_card: 
+    Ex. "4 of Diamonds"
+the list of players. 
+List of strings: 
+
+Add methods to distribute the cards and display the players' cards.
+"""
+
+
+class Card:
+    def __init__(self, value, suit):
+        if value < 1 or value > 13:
+            raise ValueError("The card must have a value between 1 and 13")
+        self.value = value
+        self.suit = suit
+
+    def display_card(self):
+        print(f"{self.value} of {self.suit}")
+
+
+class CardGame:
     """
-    Un jeu de cartes contient toujours 52 cartes
-    1 à 2 de chaque couleur
+    A deck of cards always contains 52 cards
+    1 to 2 of each suit
     """
 
-    def __init__(self, liste_des_joueurs):
-        self.liste_de_cartes = [Carte(1, 'Pique'), Carte(2, 'Pique'), Carte(1, 'Coeur'), Carte(2, 'Coeur'),
-                                Carte(1, 'Trefle'), Carte(2, 'Trefle'), Carte(1, 'Carreau'), Carte(2, 'Carreau')]
-        self.liste_des_joueurs = liste_des_joueurs
+    def __init__(self, players_list):
+        self.card_list = [Card(1, 'Spade'), Card(2, 'Spade'), Card(1, 'Heart'), Card(2, 'Heart'),
+                          Card(1, 'Club'), Card(2, 'Club'), Card(1, 'Diamond'), Card(2, 'Diamond')]
+        self.players_list = players_list
 
-    def distribuer_cartes(self):
+    def distribute_cards(self):
         """
-        Retourner un dictionnaire
+        Return a dictionary
         {
-        {Joueur1: [Carte(1, 'Pique'), Carte(2, 'Pique')]}
-        {Joueur2: [Carte(1, 'Coeur'), Carte(2, 'Coeur')]}
-        {Joueur3: [Carte(1, 'Trefle'), Carte(2, 'Trefle')]}
-        {Joueur4: [Carte(1, 'Carreau'), Carte(2, 'Carreau')]}
+        {Player1: [Card(1, 'Spade'), Card(2, 'Spade')]},
+        {Player2: [Card(1, 'Heart'), Card(2, 'Heart')]},
+        {Player3: [Card(1, 'Club'), Card(2, 'Club')]},
+        {Player4: [Card(1, 'Diamond'), Card(2, 'Diamond')]}
         }
         """
-        dictionnaire = {}
-        """
-        1. Trouver le nombre de cartes à donner à chaque joueur.
-        -- Garder en mémoire un compteur qui compte ou on est rendu dans le paquet de cartes
-        2. Boucler sur les joueurs.
-        3. Lui donner le nombre de cartes qu'on veut. 
-        """
-        nb_de_cartes_par_joueur = int(len(self.liste_de_cartes) / len(self.liste_des_joueurs))
-        cartes_distribuees = 0
-        for j in self.liste_des_joueurs:
-            position_dans_la_liste_de_cartes = cartes_distribuees + nb_de_cartes_par_joueur
-            dictionnaire.update({j: self.liste_de_cartes[cartes_distribuees:position_dans_la_liste_de_cartes]})
-            cartes_distribuees += nb_de_cartes_par_joueur
+        dictionary = {}
+        cards_per_player = int(len(self.card_list) / len(self.players_list))
+        distributed_cards = 0
+        for player in self.players_list:
+            dictionary[player] = self.card_list[distributed_cards:distributed_cards + cards_per_player]
+            distributed_cards += cards_per_player
+        return dictionary
 
-        return dictionnaire
-
-    def afficher_cartes_des_joueurs(self):
-        distribution = self.distribuer_cartes()
-        for item in distribution:
-            cartes = distribution[item]
-            print(f"Joueur: {item}")
-            print("Cartes:")
-            for carte in cartes:
-                carte.afficher_carte()
+    def display_players_cards(self):
+        distribution = self.distribute_cards()
+        for player, cards in distribution.items():
+            print(f"Player: {player}")
+            print("Cards:")
+            for card in cards:
+                card.display_card()
 
 
-liste_des_joueurs = ['Joueur1', 'Joueur2', 'Joueur3', 'Joueur4']
-jeu_de_carte = JeuDeCartes(liste_des_joueurs)
-jeu_de_carte.afficher_cartes_des_joueurs()
+players_list = ['Player1', 'Player2', 'Player3', 'Player4']
+card_game = CardGame(players_list)
+card_game.display_players_cards()

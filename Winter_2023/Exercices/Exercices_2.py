@@ -2,224 +2,222 @@ import os
 from typing import List
 
 """
-1. Créez une classe Personne qui a les attributs nom, prenom et age.
-Assurez-vous que l'âge est un entier positif. 
-Sinon on veut lever une erreur
-Écrivez une méthode afficher_details qui affiche les détails de la personne.
+1. Create a Person class with the attributes last_name, first_name, and age.
+Ensure that age is a positive integer.
+Otherwise, raise an error.
+Write a method display_details that displays the person's details.
 """
 
 
-class Personne:
-    def __init__(self, nom, prenom, age):
-        self.nom = nom
-        self.prenom = prenom
+class Person:
+    def __init__(self, last_name, first_name, age):
+        self.last_name = last_name
+        self.first_name = first_name
         if age >= 0:
             self.age = age
         else:
-            raise ValueError("L'age doit être un entier positif")
+            raise ValueError("Age must be a positive integer")
 
-    def afficher_details(self):
-        print(f"Le nom est {self.nom}, le prénom est {self.prenom}, l'âge est {self.age}")
+    def display_details(self):
+        print(f"Last name: {self.last_name}, First name: {self.first_name}, Age: {self.age}")
 
 
-# Jean = Personne('Doe', 'Jean', 5)
-# Jean.afficher_details()
+# John = Person('Doe', 'John', 5)
+# John.display_details()
 
 """
-2. Créez une classe CompteBancaire qui a les attributs nom, solde.
-Assurez-vous que le solde est un nombres positif.
-Écrivez des méthodes pour déposer et retirer de l'argent.
-Écrivez une métohode qui affiche le solde de la personne
+2. Create a BankAccount class with the attributes name and balance.
+Ensure that the balance is a positive number.
+Write methods to deposit and withdraw money.
+Write a method to display the person's balance.
 """
 
 
-class CompteBancaire:
-    def __init__(self, nom, solde):
-        self.nom = nom
-        if solde < 0:
-            raise Exception("Le solde doit être supérieur à 0")
-        self.solde = solde
+class BankAccount:
+    def __init__(self, name, balance):
+        self.name = name
+        if balance < 0:
+            raise Exception("Balance must be greater than 0")
+        self.balance = balance
 
-    def deposer(self, montant):
-        self.solde += montant
+    def deposit(self, amount):
+        self.balance += amount
 
-    def retirer(self, montant):
-        if montant < self.solde:
-            self.solde -= montant
+    def withdraw(self, amount):
+        if amount < self.balance:
+            self.balance -= amount
         else:
-            raise Exception("Votre solde est insuffisant")
+            raise Exception("Insufficient balance")
 
-    def afficher(self):
-        print(f"Bonjour {self.nom}.\n Votre solde est de {self.solde}")
+    def display(self):
+        print(f"Hello {self.name}. Your balance is {self.balance}")
 
 
-# compteHakim = CompteBancaire("Hakim", 20)
-# #compteHakim.afficher()
-# compteHakim.deposer(50)        
-# compteHakim.retirer(60)
-# compteHakim.afficher()
+# accountJohn = BankAccount("John", 20)
+# #accountJohn.display()
+# accountJohn.deposit(50)        
+# accountJohn.withdraw(60)
+# accountJohn.display()
 
 """
-Créez une classe Rectangle qui a les attributs longueur et largeur.
-Assurez-vous que la longueur et la largeur sont des nombres positifs.
-Sinon je veux lever une exception
-Écrivez une méthode pour calculer l'aire du rectangle. Cette méthode retourne l'aire du rectangle
-Écrivez une méthode pour calculer le périmètre du rectangle. Cette méthode retourne le périmètre du rectangle
-Écrivez une méthode pour afficher l'aire du rectangle.
-Écrivez une méthode pour afficher le périmètre du rectangle.
+Create a Rectangle class with the attributes length and width.
+Ensure that length and width are positive numbers.
+Otherwise, raise an exception.
+Write a method to calculate the area of the rectangle. This method returns the area.
+Write a method to calculate the perimeter of the rectangle. This method returns the perimeter.
+Write a method to display the area of the rectangle.
+Write a method to display the perimeter of the rectangle.
 """
 
 
 class Rectangle:
-    def __init__(self, longueur, largeur):
-        if longueur <= 0 or largeur <= 0:
-            raise Exception("La longueur et la largeur doivent être positifs")
+    def __init__(self, length, width):
+        if length <= 0 or width <= 0:
+            raise Exception("Length and width must be positive")
 
-        self.longueur = longueur
-        self.largeur = largeur
+        self.length = length
+        self.width = width
 
-    def calculerAire(self):
-        aire = self.longueur * self.largeur
-        return aire
+    def calculate_area(self):
+        area = self.length * self.width
+        return area
 
-    def calculerPerimetre(self):
-        perimetre = 2 * self.longueur + 2 * self.largeur
-        return perimetre
+    def calculate_perimeter(self):
+        perimeter = 2 * self.length + 2 * self.width
+        return perimeter
 
-    def afficherAire(self):
-        print(f"L'aire est {self.calculerAire()}")
+    def display_area(self):
+        print(f"The area is {self.calculate_area()}")
 
-    def afficherPerimetre(self):
-        print(f"Le périmètre est de {self.calculerPerimetre()}")
+    def display_perimeter(self):
+        print(f"The perimeter is {self.calculate_perimeter()}")
 
 
 # rectangle1 = Rectangle(27, 2)
-# rectangle1.afficherAire()
-# rectangle1.afficherPerimetre()
+# rectangle1.display_area()
+# rectangle1.display_perimeter()
 
 """
 4. 
-    Créez une classe Etudiant qui a les attributs 
-    nom: str,
-    prenom: str,
+    Create a Student class with the attributes 
+    last_name: str,
+    first_name: str,
     id: int,
-    cours: List[str]. 
-    Assurez-vous que l'ID est un nombre positif.
-    Écrivez une méthode qui ajoute des cours
-    Écrivez une méthode qui supprime des cours
-    Écrivez une méthode pour afficher les cours suivis.
+    courses: List[str]. 
+    Ensure that the ID is a positive number.
+    Write a method to add courses.
+    Write a method to remove courses.
+    Write a method to display the enrolled courses.
 """
 
 
-class Etudiant:
-    def __init__(self, nom: str, prenom: str, id: int, cours: List[str]):
-        self.nom = nom
-        self.prenom = prenom
+class Student:
+    def __init__(self, last_name: str, first_name: str, id: int, courses: List[str]):
+        self.last_name = last_name
+        self.first_name = first_name
         if id > 0:
             self.id = id
         else:
-            raise ValueError("L'id doit être positif")
-        self.cours = cours
+            raise ValueError("ID must be positive")
+        self.courses = courses
 
-    def ajouterCours(self, cours: str):
-        self.cours.append(cours)
+    def add_course(self, course: str):
+        self.courses.append(course)
 
-    def supprimerCours(self, cours: str):
-        self.cours.remove(cours)
+    def remove_course(self, course: str):
+        self.courses.remove(course)
 
-    def afficherCours(self):
-        print("Les cours suivis sont:")
-        for c in self.cours:
+    def display_courses(self):
+        print("Enrolled courses:")
+        for c in self.courses:
             print(c)
 
 
-# Jalil = Etudiant("Zouhair", "Jalil", 2, [])
-# Jalil.ajouterCours("Programmation")
-# Jalil.ajouterCours("Musique")
-# Jalil.ajouterCours("Sciences")
-# Jalil.ajouterCours("Linux")
+# Alex = Student("Smith", "Alex", 2, [])
+# Alex.add_course("Programming")
+# Alex.add_course("Music")
+# Alex.add_course("Science")
+# Alex.add_course("Linux")
 
-# Jalil.supprimerCours('Musique')
-# Jalil.afficherCours()
+# Alex.remove_course('Music')
+# Alex.display_courses()
 
-
-"""	
-    5.Créez une classe Voiture qui a les attributs marque, modele, annee et kilometrage.
-    Assurez-vous que l'année et le kilométrage sont des nombres positifs.
-    Écrivez une méthode pour afficher les détails de la voiture.
+"""    
+    5. Create a Car class with the attributes brand, model, year, and mileage.
+    Ensure that year and mileage are positive numbers.
+    Write a method to display the car details.
 """
 
 
-class Voiture:
-    def __init__(self, marque: str, modele: str, annee: int, kilometrage: int):
-        self.marque = marque
-        self.modele = modele
-        if annee <= 0 or kilometrage <= 0:
-            raise ValueError("L'année doit être positive")
-        self.annee = annee
-        self.kilometrage = kilometrage
+class Car:
+    def __init__(self, brand: str, model: str, year: int, mileage: int):
+        self.brand = brand
+        self.model = model
+        if year <= 0 or mileage <= 0:
+            raise ValueError("Year must be positive")
+        self.year = year
+        self.mileage = mileage
 
-    def afficherDetails(self):
+    def display_details(self):
         print(
-            f"Marque : {self.marque}\nModèle : {self.modele}\nAnnée : {self.annee}\nKilométrage : {self.kilometrage:,} km\n")
+            f"Brand: {self.brand}\nModel: {self.model}\nYear: {self.year}\nMileage: {self.mileage:,} km\n")
 
 
-# car_1 = Voiture("Lamborghini", "Gallardo", 2011, 80000)
-# car_2 = Voiture("Ferrari", "Enzo", 2001, 24000)
-# car_1.afficherDetails(), car_2.afficherDetails()
+# car_1 = Car("Lamborghini", "Gallardo", 2011, 80000)
+# car_2 = Car("Ferrari", "Enzo", 2001, 24000)
+# car_1.display_details(), car_2.display_details()
 
-"""	
-    6. Créez une classe Fichier qui a les attributs nom et contenu.
-    Écrivez un constructeur qui prend en entrée le nom et le contenu du fichier,
-    et une méthode pour afficher le contenu du fichier.
-    Écrivez également une méthode pour supprimer le fichier lorsque l'objet est détruit.
+"""    
+    6. Create a File class with the attributes name and content.
+    Write a constructor that takes the file name and content as input,
+    and a method to display the file content.
+    Also, write a method to delete the file when the object is destroyed.
 """
 
 
-class Fichier:
-    fichiers = []
+class File:
+    files = []
 
-    def __init__(self, nom, contenu):
-        self.nom = nom
-        self.contenu = contenu
+    def __init__(self, name, content):
+        self.name = name
+        self.content = content
 
-    def afficher_contenu(self):
+    def display_content(self):
         try:
-            with open(self.nom, 'r') as file:
-                contenu = file.read()
-                print(f"Contenu du fichier {self.nom}:")
-                print(contenu)
+            with open(self.name, 'r') as file:
+                content = file.read()
+                print(f"Content of file {self.name}:")
+                print(content)
         except FileNotFoundError:
-            print(f"Le fichier {self.nom} n'existe pas.")
+            print(f"The file {self.name} does not exist.")
 
     @classmethod
-    def creer_fichier(cls, *fichiers):
-        for fichier in fichiers:
-            if os.path.exists(fichier.nom):
-                print(f"Le fichier {fichier.nom} existe déjà.")
+    def create_file(cls, *files):
+        for file in files:
+            if os.path.exists(file.name):
+                print(f"The file {file.name} already exists.")
             else:
                 try:
-                    with open(fichier.nom, 'w') as file:
-                        file.write(fichier.contenu)
-                    cls.fichiers.append(fichier.nom)
+                    with open(file.name, 'w') as f:
+                        f.write(file.content)
+                    cls.files.append(file.name)
                 except Exception as e:
-                    print(f"Erreur lors de la création du fichier {fichier.nom}: {e}")
+                    print(f"Error creating the file {file.name}: {e}")
 
     @classmethod
-    def afficher_tous(cls):
-        print("Liste de tous les fichiers créés:", ', '.join(cls.fichiers))
+    def display_all(cls):
+        print("List of all created files:", ', '.join(cls.files))
 
     def __del__(self):
         try:
-            os.remove(self.nom)
-            print(f"Le fichier {self.nom} a été supprimé avec succès.")
+            os.remove(self.name)
+            print(f"The file {self.name} has been successfully deleted.")
         except FileNotFoundError:
-            print(f"Le fichier {self.nom} n'existe pas.")
+            print(f"The file {self.name} does not exist.")
 
-
-# Exemple d’utilisation
-fichier1 = Fichier("cat.jpeg", "Image de chat.")
-fichier2 = Fichier("different_cat.png", "Image de chat différente")
-fichier3 = Fichier("song.mp3", "Différents sons de chats")
-Fichier.creer_fichier(fichier1, fichier2, fichier3)
-Fichier.afficher_tous()
+# Example usage
+file1 = File("cat.jpeg", "Image of a cat.")
+file2 = File("different_cat.png", "Different image of a cat")
+file3 = File("song.mp3", "Different cat sounds")
+File.create_file(file1, file2, file3)
+File.display_all()

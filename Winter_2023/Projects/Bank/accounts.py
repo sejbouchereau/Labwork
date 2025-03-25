@@ -1,92 +1,92 @@
-comptes = {
+accounts = {
     123456: {
-        'Nom': 'Martin',
-        'Prénom': 'Lucas',
-        'Solde': 1000,
-        'Code PIN': '1234'
+        'Last Name': 'Martin',
+        'First Name': 'Lucas',
+        'Balance': 1000,
+        'PIN Code': '1234'
     },
     654321: {
-        'Nom': 'Lefebvre',
-        'Prénom': 'Elodie',
-        'Solde': 250,
-        'Code PIN': '5678'
+        'Last Name': 'Lefebvre',
+        'First Name': 'Elodie',
+        'Balance': 250,
+        'PIN Code': '5678'
     },
     987654: {
-        'Nom': 'Garcia',
-        'Prénom': 'Maxime',
-        'Solde': 500,
-        'Code PIN': '9012'
+        'Last Name': 'Garcia',
+        'First Name': 'Maxime',
+        'Balance': 500,
+        'PIN Code': '9012'
     },
     135792: {
-        'Nom': 'Dubois',
-        'Prénom': 'Laura',
-        'Solde': 750,
-        'Code PIN': '3456'
+        'Last Name': 'Dubois',
+        'First Name': 'Laura',
+        'Balance': 750,
+        'PIN Code': '3456'
     },
     246810: {
-        'Nom': 'Lecomte',
-        'Prénom': 'Mélissa',
-        'Solde': 100,
-        'Code PIN': '7890'
+        'Last Name': 'Lecomte',
+        'First Name': 'Mélissa',
+        'Balance': 100,
+        'PIN Code': '7890'
     },
     369258: {
-        'Nom': 'Roux',
-        'Prénom': 'Thomas',
-        'Solde': 2000,
-        'Code PIN': '2345'
+        'Last Name': 'Roux',
+        'First Name': 'Thomas',
+        'Balance': 2000,
+        'PIN Code': '2345'
     },
     101010: {
-        'Nom': 'Moreau',
-        'Prénom': 'Julie',
-        'Solde': 300,
-        'Code PIN': '6789'
+        'Last Name': 'Moreau',
+        'First Name': 'Julie',
+        'Balance': 300,
+        'PIN Code': '6789'
     },
     121212: {
-        'Nom': 'Girard',
-        'Prénom': 'Antoine',
-        'Solde': 1250,
-        'Code PIN': '4321'
+        'Last Name': 'Girard',
+        'First Name': 'Antoine',
+        'Balance': 1250,
+        'PIN Code': '4321'
     },
     141414: {
-        'Nom': 'Bernard',
-        'Prénom': 'Nina',
-        'Solde': 800,
-        'Code PIN': '8765'
+        'Last Name': 'Bernard',
+        'First Name': 'Nina',
+        'Balance': 800,
+        'PIN Code': '8765'
     },
     161616: {
-        'Nom': 'Fournier',
-        'Prénom': 'Jules',
-        'Solde': 50,
-        'Code PIN': '2109'
+        'Last Name': 'Fournier',
+        'First Name': 'Jules',
+        'Balance': 50,
+        'PIN Code': '2109'
     },
     181818: {
-        'Nom': 'Mercier',
-        'Prénom': 'Hugo',
-        'Solde': 1750,
-        'Code PIN': '6543'
+        'Last Name': 'Mercier',
+        'First Name': 'Hugo',
+        'Balance': 1750,
+        'PIN Code': '6543'
     },
     202020: {
-        'Nom': 'Carpentier',
-        'Prénom': 'Emma',
-        'Solde': 400,
-        'Code PIN': '0987'
+        'Last Name': 'Carpentier',
+        'First Name': 'Emma',
+        'Balance': 400,
+        'PIN Code': '0987'
     },
     222222: {
-        'Nom': 'Thomas',
-        'Prénom': 'Raphaël',
-        'Solde': 650,
-        'Code PIN': '5432'
+        'Last Name': 'Thomas',
+        'First Name': 'Raphaël',
+        'Balance': 650,
+        'PIN Code': '5432'
     },
     242424: {
-        'Nom': 'Petit',
-        'Prénom': 'Chloé',
-        'Solde': 1500,
-        'Code PIN': '9876'
+        'Last Name': 'Petit',
+        'First Name': 'Chloé',
+        'Balance': 1500,
+        'PIN Code': '9876'
     },
     262626: {
-        'Nom': 'Lemaire',
-        'Prénom': 'Olivier',
-        'Solde': 900,
-        'Code PIN': '3210'
+        'Last Name': 'Lemaire',
+        'First Name': 'Olivier',
+        'Balance': 900,
+        'PIN Code': '3210'
     }
 }

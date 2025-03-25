@@ -1,27 +1,27 @@
-from bank_account import CompteBancaire
+from bank_account import BankAccount
 
 
-class Banque:
+class Bank:
     def __init__(self):
-        self.comptes = []
-    
-    def creerUnCompte(self, nom, solde, numero_de_compte):
-        if solde != float(solde):
-            raise ValueError("Le solde doit être de type float.")
-        if numero_de_compte != int(numero_de_compte):
-            raise ValueError("Le numéro de compte doit être un entier.")
-    
-        compte = CompteBancaire(nom, solde, numero_de_compte)
-        self.comptes.append(compte)
-    
-    def ajouterUnCompte(self, compte):
-        if not isinstance(compte, CompteBancaire):
-            raise ValueError("Le compte n'est pas approuvé.")
-        self.comptes.append(compte)
-    
-    def supprimerUnCompte(self, numero_de_compte):
-        for compte in self.comptes:
-            if compte.numero_de_compte == numero_de_compte:
-                self.comptes.remove(compte)
+        self.accounts = []
+
+    def creerUnCompte(self, name, balance, account_number):
+        if balance != float(balance):
+            raise ValueError("The balance must be of type float.")
+        if account_number != int(account_number):
+            raise ValueError("The account number must be an integer.")
+
+        account = BankAccount(name, balance, account_number)
+        self.accounts.append(account)
+
+    def ajouterUnCompte(self, account):
+        if not isinstance(account, BankAccount):
+            raise ValueError("The account is not approved.")
+        self.accounts.append(account)
+
+    def supprimerUnCompte(self, account_number):
+        for account in self.accounts:
+            if account.account_number == account_number:
+                self.accounts.remove(account)
                 return
-        raise ValueError("Le numéro de compte n'est pas dans notre base de données.")
+        raise ValueError("The account number is not in our database.")

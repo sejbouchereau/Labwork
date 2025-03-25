@@ -1,145 +1,147 @@
-from comptes import comptes
+from accounts import accounts
 
 
-# Fonction qui demande à l'utilisateur son numéro de compte
+# Function that asks the user for their account number
 def get_account_number():
     """
-    Une fonction qui demande à l'utilisateur son numéro de compte.
-    Cette fonction se nomme get_account_number
-    Cette fonction demande à l'utilisateur son numéro de compte et le retourne sous forme d'Integer (int)
+    A function that asks the user for their account number.
+    This function is named get_account_number.
+    This function asks the user for their account number and returns it as an integer.
     """
-    account_number = int(input("Veuillez entrer votre numéro de compte: "))
+    account_number = int(input("Please enter your account number: "))
     return int(account_number)
 
 
-# Fonction qui vérifie si un numéro de compte est valide
+# Function that checks if an account number is valid
 def is_account_valid(account_number):
     """
-    - Écrivez une fonction qui vérifie si un numéro de compte est valide:
-    - Cette fonction va avoir comme nom is_account_valid
-    - Cette fonction prend en paramètre un numéro de compte (integer)
-    - Cette fonction retourne un bool (True ou False)
+    - A function that checks if an account number is valid.
+    - This function is named is_account_valid.
+    - This function takes an account number (integer) as a parameter.
+    - This function returns a boolean (True or False).
     """
-    if account_number in comptes:
-        return True
-    else:
-        return False
+    return account_number in accounts
 
 
-# Fonction qui demande à l'utilisateur son code pin
+# Function that asks the user for their PIN code
 def get_pin():
     """
-    Une fonction qui demande à l'utilisateur son code pin.
-    Cette fonction se nomme get_pin
-    Cette fonction demande à l'utilisateur son code pin et le retourne sous forme de string.
+    A function that asks the user for their PIN code.
+    This function is named get_pin.
+    This function asks the user for their PIN code and returns it as a string.
     """
-    pin_code = input("Veuillez entrer votre code PIN: ")
+    pin_code = input("Please enter your PIN code: ")
     return pin_code
 
 
-# Fonction qui vérifie si le code PIN entré par l'utilisateur est correct
+# Function that checks if the entered PIN code is correct
 def is_pin_valid(account_number, pin_code):
     """
-    - Une fonction qui vérifie si le code PIN entré par l'utilisateur est correct.
-    - Cette fonction va avoir comme nom is_pin_valid
-    - Cette fonction prend en paramètre un numéro de compte (integer) et un code pin (string)
-    - Cette fonction retourne un dictionnaire qui correspond aux informations du compte si le code pin est valide
-    - Cette fonction retourne None si le code pin est invalide.
+    - A function that checks if the entered PIN code is correct.
+    - This function is named is_pin_valid.
+    - This function takes an account number (integer) and a PIN code (string) as parameters.
+    - This function returns the account details dictionary if the PIN code is valid.
+    - This function returns None if the PIN code is invalid.
     """
-    if pin_code == comptes[account_number]['Code PIN']:
-        return comptes[account_number]
+    if pin_code == accounts[account_number]['PIN Code']:
+        return accounts[account_number]
     else:
         return None
 
 
-# Fonction qui affiche à l'utilisateur les options de retrait et lui demande son choix
+# Function that displays withdrawal options and asks the user for their choice
 def get_choice():
     """
-    Une fonction qui affiche à l'utilisateur les options de retrait et lui demande son choix.
-    Cette fonction se nomme get_choice
-    Cette fonction retourne le choix de l'utilisateur sour forme d'integer (int).
+    A function that displays withdrawal options and asks the user for their choice.
+    This function is named get_choice.
+    This function returns the user's choice as an integer.
     """
     choice = int(input(
-        "Sélectionnez l'une des options de retrait suivantes:\n1. Retirer 20$\n2. Retirer 50$\n3. Retirer 100$\n4. Retirer un montant personnalisé "))
+        "Select one of the following withdrawal options:\n"
+        "1. Withdraw $20\n"
+        "2. Withdraw $50\n"
+        "3. Withdraw $100\n"
+        "4. Withdraw a custom amount "
+    ))
     return choice
 
 
-# Fonction qui valide si le retrait est possible
-def is_withdrawl_possible(account_details, choice):
+# Function that checks if the withdrawal is possible
+def is_withdrawal_possible(account_details, choice):
     """
-    Une fonction qui valide si le retrait est possible.
-    Cette fonction s'appelle is_withdrawl_possible
-    Cette fonction prend en entrée le compte de l'utilisateur (Un dictionnaire), et le montant du retrait.
-    Cette fonction retourne True si l'argent disponible est plus grand égal au montant du retrait.
-    Elle retourne False dans le cas contraire.
+    A function that checks if the withdrawal is possible.
+    This function is named is_withdrawal_possible.
+    This function takes the user's account (a dictionary) and the withdrawal amount as input.
+    This function returns True if the available balance is greater than or equal to the withdrawal amount.
+    It returns False otherwise.
     """
-    solde = int(account_details['Solde'])
-    return choice <= solde
+    balance = int(account_details['Balance'])
+    return choice <= balance
 
 
-# Fonction qui effectue un retrait
-def withdrawl(account_details, choice):
+# Function that performs a withdrawal
+def withdrawal(account_details, choice):
     """
-    Une fonction qui effectue un retrait.
-    Cette fonction s'appelle withdrawl
-    Cette fonction prend en entrée le compte de l'utilisateur (Un dictionnaire) et le montant du retrait
-    Cette fonction doit vérifier que le solde est assez grand pour effectuer le retrait.
-    Sinon elle affiche à l'écran un message d'erreur et retourne le dictionnaire sans avoir effectuer d'opération
-    Cette fonction retourne le dictionnaire qui correspond au compte après l'opération
+    A function that performs a withdrawal.
+    This function is named withdrawal.
+    This function takes the user's account (a dictionary) and the withdrawal amount as input.
+    This function verifies if the balance is sufficient to complete the withdrawal.
+    Otherwise, it displays an error message and returns the dictionary without making any changes.
+    This function returns the updated account dictionary after the operation.
     """
-    if is_withdrawl_possible(account_details, choice):
-        account_details['Solde'] -= choice
+    if is_withdrawal_possible(account_details, choice):
+        account_details['Balance'] -= choice
     else:
-        print("Solde insuffisant pour effectuer ce retrait.")
+        print("Insufficient balance to complete this withdrawal.")
     return account_details
 
 
-# Fonction qui demande à l'utilisateur quel montant il veut retirer
-def get_withdrawl_amount():
+# Function that asks the user for the amount they want to withdraw
+def get_withdrawal_amount():
     """
-    Une fonction qui demande à l'utilisateur quel montant il veut retirer.
-    Cette fonction se nomme get_withdrawl_amount
-    Cette fonction retourne le montant entré sous forme de float.
+    A function that asks the user for the amount they want to withdraw.
+    This function is named get_withdrawal_amount.
+    This function returns the entered amount as a float.
     """
-    amount = float(input("Veuillez entrer le montant que vous désirez retirer: "))
+    amount = float(input("Please enter the amount you wish to withdraw: "))
     return amount
 
 
-# Fonction qui gère les options de retrait
-def call_withdrawl(choice, account_details):
+# Function that handles withdrawal options
+def call_withdrawal(choice, account_details):
     """
-    Une fonction qui gère les options de retrait.
-    - Cette fonction s'appelle call_withdrawl
-    - Cette fonction prend en entrée un chiffre qui correspond à l'option choisie et le dictionnaire qui correspond au compte de l'utilisateur.
-    - Si l'utilisateur entre une option valide, on appelle la fonction withdrawl avec le retrait voulu, sinon on affiche une erreur et on appelle return
+    A function that handles withdrawal options.
+    - This function is named call_withdrawal.
+    - This function takes a number corresponding to the selected option and the dictionary containing the user's account details as input.
+    - If the user enters a valid option, the function calls withdrawal with the specified amount; otherwise, it displays an error and returns.
     """
     if choice == 1:
-        return withdrawl(account_details, 20)
+        return withdrawal(account_details, 20)
     elif choice == 2:
-        return withdrawl(account_details, 50)
+        return withdrawal(account_details, 50)
     elif choice == 3:
-        return withdrawl(account_details, 100)
+        return withdrawal(account_details, 100)
     elif choice == 4:
-        amount = get_withdrawl_amount()
-        return withdrawl(account_details, amount)
+        amount = get_withdrawal_amount()
+        return withdrawal(account_details, amount)
     else:
-        print("Erreur: Choix invalide.")
+        print("Error: Invalid choice.")
         return account_details
 
 
-# Fonction qui affiche le solde du compte
+# Function that displays the account balance
 def get_account_balance(account_details):
     """
-    Une fonction qui affiche à l'utilisateur les options de retrait et lui demande son choix.
-    Cette fonction se nomme get_account_balance
-    Cette fonction prend en entrée le dictionnaire qui correspond au compte de l'utilisateur.
-    Cette fonction retourne le solde d'un utilisateur.
+    A function that displays the user's account balance.
+    This function is named get_account_balance.
+    This function takes the user's account dictionary as input.
+    This function returns the user's balance.
     """
-    print(f"Votre solde actuel est de {account_details['Solde']:,}$.")
+    print(f"Your current balance is ${account_details['Balance']:,}.")
 
 
 def main():
-    print("Bienvenue à Ahuntsic Bank\n")
+    print("Welcome to Ahuntsic Bank\n")
     account_number = get_account_number()
     if is_account_valid(account_number):
         pin_code = get_pin()
@@ -147,18 +149,18 @@ def main():
         if account_details:
             while True:
                 choice = get_choice()
-                account_details = call_withdrawl(choice, account_details)
+                account_details = call_withdrawal(choice, account_details)
                 get_account_balance(account_details)
-                # Demande à l'utilisateur s'il veut continuer ou quitter
-                continue_choice = input("Souhaitez-vous effectuer un autre retrait ? (oui/non) ").strip().lower()
-                if continue_choice != "oui":
+                # Ask the user if they want to continue or exit
+                continue_choice = input("Would you like to make another withdrawal? (yes/no) ").strip().lower()
+                if continue_choice != "yes":
                     break
         else:
-            print("Votre code PIN est invalide.")
+            print("Your PIN code is incorrect.")
     else:
-        print("Votre numéro de compte n'existe pas dans notre base de données.")
+        print("Your account number does not exist in our database.")
 
-    print("Veuillez passer une bonne journée.")
+    print("Have a great day.")
 
 
 if __name__ == "__main__":

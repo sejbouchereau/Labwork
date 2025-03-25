@@ -1,24 +1,24 @@
-from bank import Banque
-from bank_account import CompteBancaire
+from bank import Bank
+from bank_account import BankAccount
 
-banque_ahuntsic = Banque()
+ahuntsic_bank = Bank()
 
-compte_1 = CompteBancaire("Jean Leloup", 2000, 754211)
-compte_2 = CompteBancaire("Lisa Marino", 800, 872663)
-compte_3 = CompteBancaire("Mourad Demdar", 9200, 837612)
+account_1 = BankAccount("Jean Leloup", 2000, 754211)
+account_2 = BankAccount("Lisa Marino", 800, 872663)
+account_3 = BankAccount("Mourad Demdar", 9200, 837612)
 
-banque_ahuntsic.ajouterUnCompte(compte_1)
-banque_ahuntsic.ajouterUnCompte(compte_2)
-banque_ahuntsic.ajouterUnCompte(compte_3)
+ahuntsic_bank.ajouterUnCompte(account_1)
+ahuntsic_bank.ajouterUnCompte(account_2)
+ahuntsic_bank.ajouterUnCompte(account_3)
 
-banque_ahuntsic.creerUnCompte("Joseph Lamine", 2783, 827732)
+ahuntsic_bank.creerUnCompte("Joseph Lamine", 2783, 827732)
 
-compte_2.deposer(500)
+account_2.deposit(500)
 
-for compte in banque_ahuntsic.comptes:
-    compte.afficher_solde()
+for account in ahuntsic_bank.accounts:
+    account.display_balance()
 
-banque_ahuntsic.supprimerUnCompte(837612)
+ahuntsic_bank.supprimerUnCompte(837612)
 
-for compte in banque_ahuntsic.comptes:
-    compte.afficher_solde()
+for account in ahuntsic_bank.accounts:
+    account.display_balance()

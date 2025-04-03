@@ -1,0 +1,2 @@
+# Wall-E
+Program that calculates the total area to be cleaned by a robot across multiple zones and estimates the required cleaning time in a readable format, based on the robot's cleaning speed per square meter.
